@@ -15,6 +15,7 @@ import Profile from "./components/profile/Profile";
 import Posts from "./components/posts/Posts";
 import Post from "./components/post/Post";
 import PrivateRoute from "./components/routing/PrivateRoute";
+import Radio from "./components/radio/Radio";
 
 // Redux
 import { Provider } from "react-redux";
@@ -45,6 +46,7 @@ const App = () => {
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/profiles" component={Profiles} />
+              <Route exact path="/radio" component={Radio} />
               <Route exact path="/profile/:id" component={Profile} />
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
               <PrivateRoute

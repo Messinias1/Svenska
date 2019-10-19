@@ -31,6 +31,9 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const guestLinks = (
     <ul>
       <li>
+        <Link to="/radio">Radio</Link>
+      </li>
+      <li>
         <Link to="/profiles">Tutors</Link>
       </li>
       <li>
