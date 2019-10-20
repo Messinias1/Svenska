@@ -489,6 +489,11 @@ button {
   margin-bottom: 0.5rem;
 }
 
+#channel-image {
+  width: 300px;
+  margin: auto;
+}
+
 /* Mobile Styles */
 @media (max-width: 700px) {
   .container {

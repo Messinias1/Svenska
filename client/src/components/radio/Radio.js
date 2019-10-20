@@ -3,25 +3,34 @@ import axios from "axios";
 
 class Radio extends Component {
   state = {
-    categories: []
+    channels: []
   };
 
   componentDidMount() {
     axios
-      .get("http://api.sr.se/api/v2/programcategories?format=json&indent=true")
+      .get("http://api.sr.se/api/v2/channels/?format=json&indent=true")
       .then(res => {
-        console.log(res);
-        this.setState({ categories: res.data.programcategories });
+        console.log(res.data.channels);
+        this.setState({ channels: res.data.channels });
       });
   }
   render() {
-    const { categories } = this.state;
-    const catList = categories.length ? (
-      categories.map(cat => {
+    const { channels } = this.state;
+    const channelList = channels.length ? (
+      channels.map(channel => {
         return (
-          <div className="post card" key={cat.id}>
+          <div className="post card" key={channel.id}>
             <div className="card-content">
-              <span className="card-title">{cat.name}</span>
+              <h1 className="large text-primary">{channel.name}</h1>
+              <p>{channel.tagline}</p>
+              <img src={channel.image} alt="" id="channel-image" />
+              <p>
+                <a href={channel.liveaudio.url}>Listen Here</a>
+              </p>
+              <p>
+                <a href={channel.siteurl}>Go to site</a>
+              </p>
+              <div className="line" />
             </div>
           </div>
         );
@@ -31,8 +40,14 @@ class Radio extends Component {
     );
     return (
       <div className="container">
-        <h1>Stations</h1>
-        <h3 className="center">{catList}</h3>
+        <h1 className="large text-primary">Stations</h1>
+        <p className="lead">
+          <i className="fas fa-arrow-alt-circle-down">
+            {" "}
+            Learn Swedish By Listening to Radio Stations Below
+          </i>
+        </p>
+        <div className="profiles">{channelList}</div>
       </div>
     );
   }
