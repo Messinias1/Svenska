@@ -1,4 +1,5 @@
 import React, { Fragment, Component } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 class Radio extends Component {
@@ -10,6 +11,8 @@ class Radio extends Component {
     };
 
     this.nextPage = this.nextPage.bind(this);
+    // this.play = this.play.bind(this);
+    // this.pause = this.pause.bind(this);
   }
 
   nextPage() {
@@ -22,8 +25,23 @@ class Radio extends Component {
       });
   }
 
+  // play() {
+  //   const { channels } = this.state;
+  //   var audio = new Audio(channels.map(channel => channel.liveaudio.url));
+  //   this.setState({ playing: true });
+  //   audio.play();
+  // }
+  // pause() {
+  //   const { channels } = this.state;
+  //   var audio = new Audio(channels.map(channel => channel.liveaudio.url));
+  //   this.setState({ playing: false });
+  //   audio.pause();
+  // }
+
   componentDidMount() {
     this.nextPage();
+    // this.play();
+    // this.pause();
   }
 
   render() {
@@ -37,7 +55,7 @@ class Radio extends Component {
             <div className="column">
               <div className="card">
                 <div className="card-content">
-                  <div class="overlay"></div>
+                  {/* <div class="overlay"></div> */}
                   {/* <h1 className="large text-primary">{channel.name}</h1> */}
                   <img
                     src={channel.image}
@@ -80,6 +98,9 @@ class Radio extends Component {
             Learn Swedish By Listening to Radio Stations Below
           </i>
         </p>
+        <Link to="/easySwe" className="m-lead">
+          Easy Swedish
+        </Link>
         <div>{channelList}</div>
       </div>
     );

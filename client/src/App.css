@@ -76,6 +76,22 @@ img {
   text-align: center;
 }
 
+.easySweCard {
+  border-style: groove;
+  border-width: medium;
+  border-radius: 9px;
+  border-color: blue;
+  margin: 16px;
+  padding: 2px;
+  display: flex;
+  cursor: pointer;
+}
+
+#feed-image {
+  width: 20%;
+  border-radius: 9px;
+  margin: 0px 40px 0px 0px;
+}
 /* Utilities */
 .container {
   max-width: 1100px;
@@ -561,24 +577,32 @@ button {
 } */
 
 /* Mobile Styles */
-@media (max-width: 700px) {
+@media all and (max-width: 700px) {
   #channel-image {
     width: 100%;
     margin: auto;
-    cursor: pointer;
   }
 
-  /* #channel-image:hover {
-    box-shadow: 0;
+  .easySweCard {
+    width: 100%;
+    padding: 2px;
+  }
+
+  #feed-image {
+    width: 40%;
+  }
+  /* 
+  #channel-image:hover {
+    display: none;
   } */
 
   .card {
     box-shadow: 0;
   }
 
-  .card:hover {
+  /* .card:hover {
     box-shadow: 0;
-  }
+  } */
 
   .container {
     margin-top: 8rem;
