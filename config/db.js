@@ -7,7 +7,7 @@ const connectDB = async () => {
     await mongoose.connect(db, {
       useNewUrlParser: true,
       useCreateIndex: true,
-      useFindAndModify: false
+      useFindAndModify: false,
     });
     console.log("MongoDB connected...");
   } catch (err) {
@@ -18,3 +18,6 @@ const connectDB = async () => {
 };
 
 module.exports = connectDB;
+
+// old connection
+//"mongoURI": "mongodb+srv://carl:carl@svenska101-r5gqr.mongodb.net/test?retryWrites=true&w=majority",

@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
 import Landing from "./components/layout/Landing";
 import Register from "./components/auth/Register";
@@ -39,39 +39,66 @@ const App = () => {
       <Router>
         <Fragment>
           <Navbar />
-          <Route exact path="/" component={Landing} />
+          <Routes>
+            <Route exact path="/" element={<Landing />} />
+          </Routes>
+
           <section className="container">
             <Alert />
-            <Switch>
-              <Route exact path="/register" component={Register} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/profiles" component={Profiles} />
-              <Route exact path="/radio" component={Radio} />
-              <Route exact path="/profile/:id" component={Profile} />
-              <PrivateRoute exact path="/dashboard" component={Dashboard} />
-              <PrivateRoute
+            <Routes>
+              <Route exact path="/register" element={<Register />} />
+              <Route exact path="/login" element={<Login />} />
+              <Route exact path="/profiles" element={<Profiles />} />
+              <Route exact path="/radio" element={<Radio />} />
+              <Route exact path="/profile/:id" element={<Profile />} />
+              {/* <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/create-profile" element={<CreateProfile />} /> */}
+              <Route
+                exact
+                path="/dashboard"
+                element={
+                  <PrivateRoute>
+                    <Dashboard />
+                  </PrivateRoute>
+                }
+              />
+              <Route
                 exact
                 path="/create-profile"
-                component={CreateProfile}
+                element={
+                  <PrivateRoute>
+                    <CreateProfile />
+                  </PrivateRoute>
+                }
               />
-              <PrivateRoute
+              <Route
                 exact
                 path="/edit-profile"
-                component={EditProfile}
+                element={
+                  <PrivateRoute>
+                    <EditProfile />
+                  </PrivateRoute>
+                }
               />
-              {/* <PrivateRoute
+              <Route
                 exact
-                path="/add-experience"
-                component={AddExperience}
+                path="/posts"
+                element={
+                  <PrivateRoute>
+                    <Posts />
+                  </PrivateRoute>
+                }
               />
-              <PrivateRoute
+              <Route
                 exact
-                path="/add-education"
-                component={AddEducation}
-              /> */}
-              <PrivateRoute exact path="/posts" component={Posts} />
-              <PrivateRoute exact path="/posts/:id" component={Post} />
-            </Switch>
+                path="/posts/:id"
+                element={
+                  <PrivateRoute>
+                    <Post />
+                  </PrivateRoute>
+                }
+              />
+            </Routes>
           </section>
         </Fragment>
       </Router>

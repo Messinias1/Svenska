@@ -1,10 +1,11 @@
 import React, { useState, Fragment } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createProfile } from "../../actions/profile";
 
-const Createprofile = ({ createProfile, history }) => {
+const Createprofile = ({ createProfile }) => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     location: "",
     bio: "",
@@ -13,26 +14,18 @@ const Createprofile = ({ createProfile, history }) => {
     help: "",
     facebook: "",
     twitter: "",
-    instagram: ""
+    instagram: "",
   });
   const [displaySocialInputs, toggleSocialInputs] = useState(false);
-  const {
-    location,
-    bio,
-    status,
-    skills,
-    help,
-    facebook,
-    twitter,
-    instagram
-  } = formData;
+  const { location, bio, status, skills, help, facebook, twitter, instagram } =
+    formData;
 
-  const onChange = e =>
+  const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
-    createProfile(formData, history);
+    createProfile(formData, navigate);
   };
 
   return (
@@ -43,9 +36,9 @@ const Createprofile = ({ createProfile, history }) => {
         profile stand out
       </p>
       <small>* = required field</small>
-      <form className="form" onSubmit={e => onSubmit(e)}>
+      <form className="form" onSubmit={(e) => onSubmit(e)}>
         <div className="form-group">
-          <select name="status" value={status} onChange={e => onChange(e)}>
+          <select name="status" value={status} onChange={(e) => onChange(e)}>
             <option value="Advanced">Advanced</option>
             <option value="Intermediate">Intermediate</option>
             <option value="Advanced Beginner">
@@ -65,7 +58,7 @@ const Createprofile = ({ createProfile, history }) => {
             placeholder="Location"
             name="location"
             value={location}
-            onChange={e => onChange(e)}
+            onChange={(e) => onChange(e)}
           />
           <small className="form-text">
             City & state suggested (eg. Boston, MA)
@@ -77,7 +70,7 @@ const Createprofile = ({ createProfile, history }) => {
             placeholder="* Skills"
             name="skills"
             value={skills}
-            onChange={e => onChange(e)}
+            onChange={(e) => onChange(e)}
           />
           <small className="form-text">
             Please use comma separated values (eg. HTML,CSS,JavaScript,PHP)
@@ -89,7 +82,7 @@ const Createprofile = ({ createProfile, history }) => {
             placeholder="* What would you like help with?"
             name="help"
             value={help}
-            onChange={e => onChange(e)}
+            onChange={(e) => onChange(e)}
           />
           <small className="form-text">
             Please use comma separated values (eg. HTML,CSS,JavaScript,PHP)
@@ -100,7 +93,7 @@ const Createprofile = ({ createProfile, history }) => {
             placeholder="A short bio of yourself"
             name="bio"
             value={bio}
-            onChange={e => onChange(e)}
+            onChange={(e) => onChange(e)}
           />
           <small className="form-text">Tell us a little about yourself</small>
         </div>
@@ -123,7 +116,7 @@ const Createprofile = ({ createProfile, history }) => {
                 placeholder="Twitter URL"
                 name="twitter"
                 value={twitter}
-                onChange={e => onChange(e)}
+                onChange={(e) => onChange(e)}
               />
             </div>
             <div className="form-group social-input">
@@ -133,7 +126,7 @@ const Createprofile = ({ createProfile, history }) => {
                 placeholder="Facebook URL"
                 name="facebook"
                 value={facebook}
-                onChange={e => onChange(e)}
+                onChange={(e) => onChange(e)}
               />
             </div>
             <div className="form-group social-input">
@@ -143,7 +136,7 @@ const Createprofile = ({ createProfile, history }) => {
                 placeholder="Instagram URL"
                 name="instagram"
                 value={instagram}
-                onChange={e => onChange(e)}
+                onChange={(e) => onChange(e)}
               />
             </div>
           </Fragment>
@@ -158,10 +151,7 @@ const Createprofile = ({ createProfile, history }) => {
 };
 
 Createprofile.propTypes = {
-  createProfile: PropTypes.func.isRequired
+  createProfile: PropTypes.func.isRequired,
 };
 
-export default connect(
-  null,
-  { createProfile }
-)(withRouter(Createprofile));
+export default connect(null, { createProfile })(Createprofile);
